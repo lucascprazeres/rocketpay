@@ -7,12 +7,13 @@ defmodule Rocketpay.Numbers do
 
   defp handle_file({:ok, result}) do
     result =
-    result
-    |> String.split( ",")
-    |> Stream.map(fn char -> String.to_integer(char) end)
-    |> Enum.sum()
+      result
+      |> String.split(",")
+      |> Stream.map(fn char -> String.to_integer(char) end)
+      |> Enum.sum()
 
-    {:ok, %{ result: result }}
+    {:ok, %{result: result}}
   end
+
   defp handle_file({:error, _reason}), do: {:error, %{message: "Invalid file."}}
 end
