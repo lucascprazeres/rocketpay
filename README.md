@@ -1,6 +1,6 @@
 <img src=".github/cover.png"/>
 
-<h1 align="center">RocketPay - trila Elixir</h1>
+<h1 align="center">RocketPay - trilha Elixir</h1>
 
 ## 🔍 Sobre o projeto
 
