@@ -7,7 +7,7 @@ defmodule Rocketpay.Account do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
-  @required_params []
+  @required_params [:balance, :user_id]
 
   schema "accounts" do
     field :balance, :decimal
