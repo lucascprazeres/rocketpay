@@ -1,4 +1,4 @@
-<img src=".github/cover.png"/>
+<img src=".github/nlw-banner.png"/>
 
 <h1 align="center">RocketPay - trilha Elixir</h1>
 
@@ -8,9 +8,9 @@ Esse é um do projetos propostos durante a quarta edição da [Next Level Week](
 
 ## 🤯 Tecnoligias utilizadas
 
-- [Elixir - v1.11.4](https://elixir-lang.org/install.html)
-- [Phoenix - v1.5.7](https://www.phoenixframework.org/)
-- [Postgres database](https://www.postgresql.org/)
+* [Elixir - v1.11.4](https://elixir-lang.org/install.html)
+* [Phoenix - v1.5.7](https://www.phoenixframework.org/)
+* [Postgres database](https://www.postgresql.org/)
 
 ## 🤔 Requisitos
 
@@ -22,7 +22,7 @@ Com o banco de dados rodando, configure suas credenciais nos arquivos **config/d
 
 **Para clonar o projeto para a sua máquina**
 
-```bash
+``` bash
 git clone https://github.com/lucascprazeres/rocketpay
 
 cd rocketpay
@@ -30,7 +30,7 @@ cd rocketpay
 
 **Para iniciar o seu servidor Phoenix:**
 
-```bash
+``` bash
 # instale as dependências
 mix deps.get
 
@@ -40,13 +40,119 @@ mix ecto.setup
 # Rode o servidor
 mix phx.server
 ```
+
 *Você está pronto para usar a aplicação!* 🥳
 
-A url base para acessar a API é [`localhost:4000`](http://localhost:4000).
+A url base para acessar a API é [ `localhost:4000` ](http://localhost:4000).
 
-## Rotas
+## Rotas da aplicação
 
-...Em breve...
+**A baseURL para as requisições em modo de desenvolvimento é *http://localhost:4000/api***
+
+### POST: /users
+
+**Corpo da requisição (JSON)**
+
+``` json
+{
+  "name": "john doe",
+	"email": "johndoe@email.com",
+	"nickname": "jdoe",
+	"password": "password",
+	"age": 19
+}
+```
+
+**Resposta (JSON)**
+
+```json
+{
+  "message": "User created",
+  "user": {
+    "account": {
+      "balance": "0.00",
+      "id": "2ec3cab8-a789-4ae8-ac02-15f93b1b8391"
+    },
+    "id": "14f6d5cc-36ce-45aa-ba6f-570f0ddf7498",
+    "name": "john doe",
+    "nickname": "jdoe"
+  }
+}
+```
+
+### POST: /accounts/:account_id/deposit
+
+**Corpo da requisição (JSON)**
+
+``` json
+{
+  "value": "100"
+}
+```
+
+**Resposta (JSON)**
+
+```json
+{
+  "account": {
+    "balance": "100.00",
+    "id": "2ec3cab8-a789-4ae8-ac02-15f93b1b8391"
+  },
+  "message": "Balance changed sucessfuly"
+}
+```
+
+### POST: /accounts/:account_id/withdraw
+
+**Corpo da requisição (JSON)**
+
+``` json
+{
+  "value": "100"
+}
+```
+
+**Resposta (JSON)**
+
+```json
+{
+  "account": {
+    "balance": "0.00",
+    "id": "2ec3cab8-a789-4ae8-ac02-15f93b1b8391"
+  },
+  "message": "Balance changed sucessfuly"
+}
+```
+
+### POST: /accounts/transactions
+
+**Corpo da requisição (JSON)**
+
+``` json
+{
+  "from": "withdraw_account_id",
+  "to": "deposit_account_id",
+  "value": "50.00"
+}
+```
+
+**Resposta (JSON)**
+
+```json
+{
+  "message": "Transaction done sucessfuly",
+  "transaction": {
+    "from_account": {
+      "balance": "350.00",
+      "id": "withdraw_account_id"
+    },
+    "to_account": {
+      "balance": "199.00",
+      "id": "deposit_account_id"
+    }
+  }
+}
+```
 
 ## 📝 Licença
 
